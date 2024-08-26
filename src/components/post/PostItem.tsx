@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Post } from '@/types/types';
 import Link from 'next/link';
+import classes from '@/styles/Post.module.css';
 
 interface PostItemProps {
   post: Post;
@@ -8,19 +9,17 @@ interface PostItemProps {
 
 const PostItem = ({ post }: PostItemProps) => {
   return (
-    <div className="mb-16">
-      <Link
-        href={`/post/${post.id}`}
-        className="text-[24px] font-bold hover:cursor-pointer underline "
-      >
-        {post.title}
-      </Link>
+    <div className={classes.post}>
+      <h2>
+        <Link href={`/post/${post.id}`}>
+          <span className={classes.postTitle}>{post.title}</span>
+        </Link>
+      </h2>
       {/* <p
         style={{ whiteSpace: 'nowrap', width: '80%', overflow: 'hidden', textOverflow: 'ellipsis' }}
       > */}
-      <p className="text-overflow3">{post.content}</p>
-      <p>{post.author}</p>
-      <p className="">{post.date}</p>
+      <p className={classes.postContent}>{post.content}</p>
+      <p className={classes.postDate}>{post.date}</p>
     </div>
   );
 };
