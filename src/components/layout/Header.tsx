@@ -3,14 +3,14 @@ import Link from 'next/link';
 import { useAuth } from '@/firebase/auth'; // 사용자 인증
 
 function Header() {
-  const { user, loginWithGoogle, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <header className={classes.header}>
       <h1 className={classes.logo}>
-        <Link href="/">My Blog (feat: next.js)</Link>
+        <Link href="/">My Blog (next.js)</Link>
       </h1>
-      <nav>
+      <nav className="grow">
         <ul>
           <li>
             <Link href="/post">게시글</Link>
@@ -28,15 +28,8 @@ function Header() {
           </button>
         ) : (
           <>
-            <button onClick={loginWithGoogle} className="p-2 bg-blue-500 rounded">
-              Google로 로그인
-            </button>
-            <Link href="/login">
-              <button className="p-2 bg-green-500 rounded">로그인</button>
-            </Link>
-            <Link href="/signup">
-              <button className="p-2 bg-yellow-500 rounded">회원가입</button>
-            </Link>
+            <Link href="/login">로그인</Link>
+            <Link href="/signup">회원가입</Link>
           </>
         )}
       </div>

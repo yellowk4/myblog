@@ -2,8 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth'; // Firebase Authentication 기능을 사용하기 위한 import
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from 'firebase/firestore'; // Firestore 데이터베이스 기능을 사용하기 위한 import
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,3 +19,5 @@ const app = initializeApp(firebaseConfig);
 
 // export default app;
 export const auth = getAuth(app);
+
+export const db = getFirestore(app);

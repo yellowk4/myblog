@@ -1,4 +1,5 @@
 import type { Post } from '@/types/types';
+import Link from 'next/link';
 
 interface PostDetailProps {
   post: Post;
@@ -17,6 +18,11 @@ const PostDetail = ({ post }: PostDetailProps) => {
       <ul className="flex justify-start gap-8 list-disc list-inside">
         {post.tags && post.tags.map((tag, index) => <li key={index}>{tag}</li>)}
       </ul>
+      {/* <div className="flex justify-center gap-6 mt-10">
+        <Link href={`/post/${post.id}`}>
+          <button className="block p-2 bg-yellow-500 rounded ">게시글 수정</button>
+        </Link>
+      </div> */}
     </div>
   );
 };
