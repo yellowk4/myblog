@@ -7,6 +7,9 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { deleteDocument } from '@/firebase/fireStore';
 import classes from '@/styles/Post.module.css';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ChevronRight } from 'lucide-react';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid';
 
 interface Post {
   id: string;
@@ -14,7 +17,7 @@ interface Post {
   content: string;
 }
 
-const PostList: React.FC = () => {
+const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [editingPostId, setEditingPostId] = useState<string | null>(null);
 
@@ -68,26 +71,21 @@ const PostList: React.FC = () => {
               <ul>
                 {posts.map((post) => (
                   <li key={post.id} className={classes.post}>
-                    <h3>
-                      <Link href={`/post/${post.id}`}>
-                        <span className={classes.postTitle}>{post.title}</span>
-                      </Link>
-                    </h3>
+                    <Link href={`/post/${post.id}`}>
+                      <h3 className={classes.postTitle}>{post.title}</h3>
+                    </Link>
                     <p className={classes.postContent}>{post.content}</p>
                     {/* <p className={classes.postDate}>{post.date}</p> */}
                     <div className="flex gap-6 my-5">
-                      <button
-                        className="block py-1 px-4 bg-yellow-500 rounded"
-                        onClick={() => setEditingPostId(post.id)}
-                      >
+                      <Button variant="destructive" onClick={() => setEditingPostId(post.id)}>
+                        <PencilSquareIcon className="mr-1 h-4 w-4" />
                         Edit
-                      </button>
-                      <button
-                        className="block  py-1 px-4 bg-gray-500 rounded "
-                        onClick={() => handleDelete(post.id)}
-                      >
+                      </Button>
+
+                      <Button variant="secondary" onClick={() => handleDelete(post.id)}>
+                        <TrashIcon className="mr-1 h-4 w-4" />
                         Delete
-                      </button>
+                      </Button>
                     </div>
                   </li>
                 ))}

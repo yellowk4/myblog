@@ -18,8 +18,8 @@ const AddPostPage = () => {
     try {
       await addDocument('posts', { title, content });
       alert('새 게시물이 추가되었습니다.');
-      setTitle('');
-      setContent('');
+      setTitle(''); // 입력된 제목 데이터 초기화
+      setContent(''); // 입력된 본문 데이터 초기화
     } catch (error) {
       console.error('게시물 추가 중 오류 발생:', error);
       alert('게시물 추가에 실패했습니다.');

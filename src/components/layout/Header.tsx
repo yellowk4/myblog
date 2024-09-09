@@ -1,6 +1,8 @@
 import classes from './Header.module.css';
 import Link from 'next/link';
 import { useAuth } from '@/firebase/auth'; // 사용자 인증
+import { Button } from '@/components/ui/button';
+import { UserIcon } from '@heroicons/react/20/solid';
 
 function Header() {
   const { user, logout } = useAuth();
@@ -28,8 +30,11 @@ function Header() {
           </button>
         ) : (
           <>
-            <Link href="/login">로그인</Link>
-            <Link href="/signup">회원가입</Link>
+            <Button asChild>
+              <Link href="/login">
+                <UserIcon className="mr-1 h-6 w-6" /> 로그인
+              </Link>
+            </Button>
           </>
         )}
       </div>
